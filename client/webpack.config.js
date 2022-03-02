@@ -20,20 +20,19 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: "./index.html",
-        title: "Contact Cards",
+        title: "Text-Editor-Io",
       }),
       new InjectManifest({
         swSrc: "./src-sw.js",
         swDest: "src-sw.js",
       }),
       new WebpackPwaManifest({
-        fingerprints: false,
-        inject: true,
-        name: "Contact Cards",
-        short_name: "Contact",
-        description: "Never forget your contacts!",
+        name: "Coding on the go",
+        short_name: "Text-Editor-Io",
+        description: "A Editor where you can code on the go",
         background_color: "#225ca3",
         theme_color: "#225ca3",
+        fingerprints: false,
         start_url: "/",
         publicPath: "/",
         icons: [
@@ -53,9 +52,12 @@ module.exports = () => {
           use: ["style-loader", "css-loader"],
         },
         {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
+        },
+        {
           test: /\.m?js$/,
           exclude: /node_modules/,
-          // We use babel-loader in order to use ES6.
           use: {
             loader: "babel-loader",
             options: {
